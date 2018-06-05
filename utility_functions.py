@@ -12,7 +12,7 @@ def show_classification_results(classification_results):
     precision  = []
     recall     = []
     f1         = []
-    
+
     for feature_name in classification_results.keys():
         accuracy.append( accuracy_score (classification_results[feature_name][0], classification_results[feature_name][1]))
         precision.append(precision_score(classification_results[feature_name][0], classification_results[feature_name][1], average='macro'))
@@ -20,7 +20,7 @@ def show_classification_results(classification_results):
         f1.append(       f1_score       (classification_results[feature_name][0], classification_results[feature_name][1], average='macro'))
         
         
-    result = pd.DataFrame({'Featureset': classification_results.keys(),
+    result = pd.DataFrame({'Featureset': list(classification_results.keys()),
                            'Accuracy'  : accuracy,
                            'Precision' : precision,
                            'Recall'    : recall,
