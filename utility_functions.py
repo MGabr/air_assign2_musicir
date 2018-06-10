@@ -31,7 +31,7 @@ def show_classification_results(classification_results):
     return HTML(result.to_html(index=None))
 
 
-def plot_confusion_matrix(results, encoder):
+def plot_confusion_matrix(results, encoder, label):
     
     from sklearn.metrics import confusion_matrix
     
@@ -48,7 +48,7 @@ def plot_confusion_matrix(results, encoder):
 
     fig = plt.figure(figsize=(6,6))
     plt.imshow(cm_norm, interpolation='nearest', cmap=plt.cm.Blues)
-    plt.title('Confusion matrix', size=16)
+    plt.title('Confusion matrix for {}'.format(label), size=16)
     tick_marks = np.arange(len(classes))
     plt.xticks(tick_marks, classes, rotation=90)
     plt.yticks(tick_marks, classes)
