@@ -73,11 +73,11 @@ def show_query_results(filenames, labels, ranked_index):
     pd.set_option('display.max_colwidth', -1)
     
     output = pd.DataFrame({"filename": filenames, "label": labels})
-    output["audio"] = '<audio src="http://127.0.0.1:5555/' + output["label"] + '/' + output["filename"].str.replace("\\","/").str.split("/").apply(lambda x: x[-1]) + '" type="audio/mpeg" controls>'
+    output["audio"] = '<a href="http://0.0.0.0:5555/' + output["label"] + '/' + output["filename"].str.replace("\\","/").str.split("/").apply(lambda x: x[-1]) + '" download>Download</a>'
     output          = output.iloc[ranked_index[:10]]
     output["rank"]  = range(output.shape[0])
     output["rank"]  = output["rank"].astype(str)
     output.set_value(0, "rank", "query")
     output          = output.reset_index()
 
-    return HTML(output[["rank", "index", "filename", "label", "audio"]].to_html(escape=False, index=False))
+    return output[["rank", "index", "filename", "label", "audio"]].to_html(escape=False, index=False)
